@@ -1,18 +1,18 @@
 
 from player.player import Player
-import os
+import sys
 import time
 import threading # Initialize the player instance
 
 player = Player()
 
-def command_listener():
+def command_listener(media_path:str):
     while player.state!= -1:
         try:
             print("Enter command: (play, pause,resume, stop, skip)")
             cmd = input().strip().lower()
             player.queue.put(cmd)
-            manage_audio()
+            manage_audio(media_path)
             if cmd == "exit":
                 break
         except (EOFError, KeyboardInterrupt):
@@ -20,7 +20,7 @@ def command_listener():
             break
     print("exiting")
 
-def manage_audio():
+def manage_audio(media_path: str):
     if not player.queue.empty():
         command = player.queue.get()  # Get command from the queue with a timeout
         if command == "play":
@@ -46,9 +46,11 @@ def destroy():
     pass
 
 if __name__ == "__main__":
-    media_path = "./test.mp3"
+    argn = len(sys.argv)
+    media_path = sys.argv[1]
+    print(media_path)
     try:
-        command_listener()
+        command_listener(media_path)
     except KeyboardInterrupt:
         pass
 

@@ -7,6 +7,7 @@ SRC = CLI.commands  # Path to main player script
 AUDIO_FILE ?= test.mp3  # Default audio file
 COMMAND = play  # Default command to run
 DUMMY = CLI.dummy
+PATH_TO_FILE = "./test.mp3"
 # Default target
 all: run
 env:
@@ -14,12 +15,11 @@ env:
 	 .$(VENV)/bin/activate
 	@echo "Virtual environment activated."
 
-	
 
 # Run the player
 run: 
 	@echo "Starting player with $(AUDIO_FILE)..."
-	$(PYTHON) -m $(SRC)$(COMMAND)
+	$(PYTHON) -m $(SRC)$(PATH_TO_FILE)
 dummy: 
 	@echo "Starting player with $(AUDIO_FILE)..."
 	$(PYTHON) -m $(DUMMY) $(COMMAND)
