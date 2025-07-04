@@ -43,6 +43,12 @@ class Player:
           
      def skip(self,time_in_seconds: int):
           current_time = self.player.get_time()
+          if time_in_seconds + current_time/1000 >= self.player.get_length()/1000:
+               print("Skipping beyond the end of the media is not allowed.")
+               return
+          if time_in_seconds + current_time/1000 < 0:
+               print("Skipping to a negative time is not allowed.")
+               return
           self.player.pause()
           self.player.set_time(current_time + time_in_seconds*1000)
           self.player.play()

@@ -1,7 +1,7 @@
 # Makefile for VLC Audiobook Player
 
 # Variables
-VENV = .venv
+VENV = env
 PYTHON = python3
 SRC = CLI.commands  # Path to main player script
 AUDIO_FILE ?= test.mp3  # Default audio file
@@ -9,7 +9,12 @@ COMMAND = play  # Default command to run
 DUMMY = CLI.dummy
 # Default target
 all: run
+env:
+	@echo "Activating virtual environment..."
+	 .$(VENV)/bin/activate
+	@echo "Virtual environment activated."
 
+	
 
 # Run the player
 run: 
