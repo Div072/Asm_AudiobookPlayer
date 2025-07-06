@@ -7,7 +7,7 @@ SRC = CLI.commands  # Path to main player script
 AUDIO_FILE ?= test.mp3  # Default audio file
 COMMAND = play  # Default command to run
 DUMMY = CLI.dummy
-PATH_TO_FILE = "./test.mp3"
+PATH_TO_FILE ?= "./test.mp3"
 # Default target
 all: run
 env:

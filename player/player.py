@@ -1,7 +1,6 @@
 from math import floor
-
 import vlc
-import time 
+
 import queue
 class Player:
      def __init__(self):
@@ -19,9 +18,7 @@ class Player:
                self.player.play()
                self.state = 1
                print("State:", self.player.get_state())
-               # Keep script running
-               while self.player.get_state() != vlc.State.Ended:
-                    time.sleep(0.1)
+
 
           except Exception as e:
                print(f"An error occurred while trying to play the media: {e}")

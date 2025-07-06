@@ -22,7 +22,7 @@ def command_listener(media_path:str):
 
 def manage_audio(media_path: str):
     if not player.queue.empty():
-        command = player.queue.get()  # Get command from the queue with a timeout
+        command = player.queue.get()  # Get command from the queue
         if command == "play":
             threading.Thread(target=player.play,
                                   args=(media_path,),daemon=True).start()  # playing audiobook on different thread.
@@ -47,10 +47,8 @@ def destroy():
 
 if __name__ == "__main__":
     argn = len(sys.argv)
+    if argn <= 1:
+        print("Usage: python command.py <media_path>")
+        sys.exit(-1)
     media_path = sys.argv[1]
-    print(media_path)
-    try:
-        command_listener(media_path)
-    except KeyboardInterrupt:
-        pass
-
+    command_listener(media_path)
